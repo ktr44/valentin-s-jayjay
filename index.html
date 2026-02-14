@@ -14,12 +14,13 @@
 
 body {
     font-family: 'Georgia', serif;
-    background: linear-gradient(135deg, #ffeef8 0%, #ffe0f0 50%, #ffd4e5 100%);
+    background: linear-gradient(135deg, #ffeef8, #ffe0f0, #ffd4e5);
     min-height: 100vh;
     display: flex;
     justify-content: center;
     align-items: center;
     overflow: hidden;
+    padding: 20px;
 }
 
 /* CONTAINER */
@@ -27,10 +28,11 @@ body {
     background: white;
     border-radius: 30px;
     padding: 50px;
-    box-shadow: 0 20px 60px rgba(255,105,180,0.3);
-    text-align: center;
     max-width: 600px;
+    width: 100%;
+    text-align: center;
     border: 3px solid #ff69b4;
+    box-shadow: 0 20px 60px rgba(255,105,180,0.3);
     position: relative;
     z-index: 10;
 }
@@ -38,7 +40,6 @@ body {
 h1 {
     color: #ff1493;
     font-size: 3em;
-    margin-bottom: 20px;
 }
 
 .question {
@@ -54,6 +55,7 @@ h1 {
     gap: 15px;
     justify-content: center;
     margin: 30px 0;
+    flex-wrap: wrap;
 }
 
 .photo-placeholder {
@@ -62,8 +64,7 @@ h1 {
     border-radius: 20px;
     border: 3px solid #ff69b4;
     overflow: hidden;
-    position: relative;
-    z-index: 5; /* IMPORTANT */
+    z-index: 5;
 }
 
 .photo-placeholder img {
@@ -78,6 +79,7 @@ h1 {
     gap: 30px;
     justify-content: center;
     margin-top: 40px;
+    flex-wrap: wrap;
 }
 
 button {
@@ -99,11 +101,11 @@ button {
     transform: scale(1.1);
 }
 
-/* Bouton fuyard */
+/* Bouton Non fuyard */
 #noBtn {
     background: #ccc;
     position: absolute;
-    z-index: 1; /* derrière les images */
+    z-index: 1;
 }
 
 /* CELEBRATION */
@@ -116,10 +118,50 @@ button {
     justify-content: center;
     align-items: center;
     flex-direction: column;
+    text-align: center;
 }
 
 .celebration.active {
     display: flex;
+}
+
+/* 📱 MOBILE */
+@media (max-width: 600px) {
+
+    .container {
+        padding: 25px;
+    }
+
+    h1 {
+        font-size: 2.2em;
+    }
+
+    .question {
+        font-size: 1.4em;
+    }
+
+    .photos-container {
+        flex-direction: column;
+    }
+
+    .photo-placeholder {
+        width: 200px;
+        height: 200px;
+    }
+
+    .buttons {
+        flex-direction: column;
+        gap: 20px;
+    }
+
+    button {
+        width: 100%;
+        padding: 18px;
+    }
+
+    #noBtn {
+        position: relative;
+    }
 }
 </style>
 </head>
@@ -154,7 +196,7 @@ button {
 <div class="celebration" id="celebration">
     <h2> Je t'aime mon doudou !!! </h2>
     <p style="font-size:2em;color:#ff69b4;">
-        Tu resteras mon Valentin pour toujours!!
+        Tu resteras mon Valentin pour toujours !!💕
     </p>
 </div>
 
@@ -162,11 +204,12 @@ button {
 const noBtn = document.getElementById('noBtn');
 
 noBtn.addEventListener('mouseover', () => {
-    const x = Math.random() * (window.innerWidth - 150);
-    const y = Math.random() * (window.innerHeight - 80);
-    noBtn.style.left = x + 'px';
-    noBtn.style.top = y + 'px';
-    noBtn.style.position = 'absolute'; // reste propre
+    if (window.innerWidth > 600) {
+        const x = Math.random() * (window.innerWidth - 150);
+        const y = Math.random() * (window.innerHeight - 80);
+        noBtn.style.left = x + 'px';
+        noBtn.style.top = y + 'px';
+    }
 });
 
 function celebrate() {
