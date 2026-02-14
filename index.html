@@ -20,34 +20,9 @@ body {
     justify-content: center;
     align-items: center;
     overflow: hidden;
-    position: relative;
 }
 
-.heart-bg, .flower {
-    position: absolute;
-    opacity: 0.3;
-}
-
-.heart-bg {
-    font-size: 30px;
-    animation: float 15s infinite ease-in-out;
-}
-
-.flower {
-    font-size: 40px;
-    animation: sway 10s infinite ease-in-out;
-}
-
-@keyframes float {
-    0%, 100% { transform: translateY(0); }
-    50% { transform: translateY(-50px); }
-}
-
-@keyframes sway {
-    0%, 100% { transform: translateX(0); }
-    50% { transform: translateX(20px); }
-}
-
+/* CONTAINER */
 .container {
     background: white;
     border-radius: 30px;
@@ -55,8 +30,9 @@ body {
     box-shadow: 0 20px 60px rgba(255,105,180,0.3);
     text-align: center;
     max-width: 600px;
-    z-index: 10;
     border: 3px solid #ff69b4;
+    position: relative;
+    z-index: 10;
 }
 
 h1 {
@@ -72,12 +48,12 @@ h1 {
     font-weight: bold;
 }
 
+/* PHOTOS */
 .photos-container {
     display: flex;
     gap: 15px;
     justify-content: center;
     margin: 30px 0;
-    flex-wrap: wrap;
 }
 
 .photo-placeholder {
@@ -86,6 +62,8 @@ h1 {
     border-radius: 20px;
     border: 3px solid #ff69b4;
     overflow: hidden;
+    position: relative;
+    z-index: 5; /* IMPORTANT */
 }
 
 .photo-placeholder img {
@@ -94,6 +72,7 @@ h1 {
     object-fit: cover;
 }
 
+/* BOUTONS */
 .buttons {
     display: flex;
     gap: 30px;
@@ -120,11 +99,14 @@ button {
     transform: scale(1.1);
 }
 
+/* Bouton fuyard */
 #noBtn {
     background: #ccc;
     position: absolute;
+    z-index: 1; /* derrière les images */
 }
 
+/* CELEBRATION */
 .celebration {
     display: none;
     position: fixed;
@@ -145,44 +127,46 @@ button {
 <body>
 
 <div class="container">
-<h1>💕 Pour Jason 💕</h1>
+    <h1>💕 Pour Jason 💕</h1>
 
-<div class="question">
-Veux-tu être mon Valentin ???
-</div>
+    <div class="question">
+        Veux-tu être mon Valentin ???
+    </div>
 
-<div class="photos-container">
-    <div class="photo-placeholder">
-        <img src="image/image1.jpeg" alt="">
+    <div class="photos-container">
+        <div class="photo-placeholder">
+            <img src="image/image1.jpeg" alt="">
+        </div>
+        <div class="photo-placeholder">
+            <img src="image/image2.jpeg" alt="">
+        </div>
+        <div class="photo-placeholder">
+            <img src="image/image3.jpeg" alt="">
+        </div>
     </div>
-    <div class="photo-placeholder">
-        <img src="image/image2.jpeg" alt="">
-    </div>
-    <div class="photo-placeholder">
-        <img src="image/image3.jpeg" alt="">
-    </div>
-</div>
 
-<div class="buttons">
-<button id="yesBtn" onclick="celebrate()">Oui ma princesse</button>
-<button id="noBtn">Non flemme</button>
-</div>
+    <div class="buttons">
+        <button id="yesBtn" onclick="celebrate()">Oui ma princesse</button>
+        <button id="noBtn">Non flemme</button>
+    </div>
 </div>
 
 <div class="celebration" id="celebration">
-<h2> Je t'aime mon doudou !!! </h2>
-<p style="font-size:2em;color:#ff69b4;">Tu restera mon Valentin pour toujours! 💕</p>
+    <h2> Je t'aime mon doudou !!! </h2>
+    <p style="font-size:2em;color:#ff69b4;">
+        Tu resteras mon Valentin pour toujours!!
+    </p>
 </div>
 
 <script>
 const noBtn = document.getElementById('noBtn');
 
-noBtn.addEventListener('mouseover', function() {
-    const randomX = Math.random() * (window.innerWidth - 200);
-    const randomY = Math.random() * (window.innerHeight - 100);
-    noBtn.style.left = randomX + 'px';
-    noBtn.style.top = randomY + 'px';
-    noBtn.style.position = 'fixed';
+noBtn.addEventListener('mouseover', () => {
+    const x = Math.random() * (window.innerWidth - 150);
+    const y = Math.random() * (window.innerHeight - 80);
+    noBtn.style.left = x + 'px';
+    noBtn.style.top = y + 'px';
+    noBtn.style.position = 'absolute'; // reste propre
 });
 
 function celebrate() {
