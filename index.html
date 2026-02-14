@@ -19,8 +19,11 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    overflow: hidden;
     padding: 20px;
+
+    /* FIX MOBILE SCROLL */
+    overflow-x: hidden;
+    overflow-y: auto;
 }
 
 /* CONTAINER */
@@ -101,7 +104,7 @@ button {
     transform: scale(1.1);
 }
 
-/* Bouton Non fuyard */
+/* Bouton Non fuyard (PC seulement) */
 #noBtn {
     background: #ccc;
     position: absolute;
@@ -119,6 +122,7 @@ button {
     align-items: center;
     flex-direction: column;
     text-align: center;
+    padding: 20px;
 }
 
 .celebration.active {
@@ -160,7 +164,7 @@ button {
     }
 
     #noBtn {
-        position: relative;
+        position: relative; /* PAS fuyard sur mobile */
     }
 }
 </style>
@@ -194,9 +198,9 @@ button {
 </div>
 
 <div class="celebration" id="celebration">
-    <h2> Je t'aime mon doudou !!! </h2>
+    <h2>💖 Je t'aime mon doudou !!! 💖</h2>
     <p style="font-size:2em;color:#ff69b4;">
-        Tu resteras mon Valentin pour toujours !!💕
+        Tu resteras mon Valentin pour toujours 💕
     </p>
 </div>
 
